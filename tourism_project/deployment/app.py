@@ -36,8 +36,12 @@ MaritalStatus = st.selectbox("MaritalStatus?", ["Single", "Divorced", "Married",
 Designation = st.selectbox("Designation?", ["Manager", "Executive", "Senior Manager", "AVP", "VP"])
 
 
-Passport = st.selectbox("Passport?", ["Yes", "No"])
-OwnCar = st.selectbox("Owns a Car?", ["Yes", "No"])
+Passport_input = st.selectbox("Passport?", ["Yes", "No"])
+OwnCar_input = st.selectbox("Owns a Car?", ["Yes", "No"])
+
+# Convert 'Yes'/'No' to 1/0 for numerical features
+Passport = 1 if Passport_input == "Yes" else 0
+OwnCar = 1 if OwnCar_input == "Yes" else 0
 
 
 numeric_features = [
@@ -89,10 +93,8 @@ input_data = pd.DataFrame([{
     'Occupation':Occupation,
     'Gender':Gender,    # Whether the customer is an active member (binary: 0 or 1)
     'ProductPitched':ProductPitched,
-    
-    
-    'MaritalStatus':1 if MaritalStatus == "Yes" else 0,
-    'Designation':1 if Designation == "Yes" else 0
+    'MaritalStatus':MaritalStatus,
+    'Designation':Designation
 
 }])
 
